@@ -13,18 +13,18 @@ const Navbar = ({location, searchLocation, setLocation}) => {
           placeholder="search..."
         />
         <div className="flex gap-6 mb-6">
-          <button class="btn gap-2">
+          <button className="btn gap-2">
             <UilSearch size={25} />
             Get Weather
           </button>
-          <button class="btn gap-2">
+          <button className="btn gap-2">
             <UilLocationPoint size={25} />
             Use Current Location
           </button>
-          <button class="btn btn-circle btn-outline text-xl" name='metric'>
+          <button className="btn btn-circle btn-outline text-xl" name='metric'>
             &deg;C
           </button>
-          <button class="btn btn-circle btn-outline text-xl" name='imperial'>
+          <button className="btn btn-circle btn-outline text-xl" name='imperial'>
             &deg;F
           </button>
         </div>
