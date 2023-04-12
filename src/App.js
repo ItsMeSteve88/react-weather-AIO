@@ -12,7 +12,7 @@ import getFormattedWeatherData from "./services/weatherService";
 function App()
 {
   
-  const [query, setQuery] = useState({ q: 'london' });
+  const [query, setQuery] = useState({ q: "Riga" });
   const [units, setUnits] = useState('metric');
   const [weather, setWeather] = useState(null);
   
@@ -25,7 +25,7 @@ function App()
     });
   }
 
-  fetchWeather()
+  fetchWeather();
   }, [query, units]);
 
   return (
@@ -34,13 +34,9 @@ function App()
       {weather && (
         <div>
           <div className="w-[1300px] p-7 rounded-lg shadow-md border-2">
-            <TodayDisplay />
+            <TodayDisplay weather={weather}/>
             <div className="w-[1250px] flex justify-between">
               <Card weather={weather}/>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
 
               <div className="border-2 rounded-3xl w-80 mt-4 h-48">
                 <CurrentLocation weather={weather} />

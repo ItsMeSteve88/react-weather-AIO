@@ -86,7 +86,7 @@ const getFormattedWeatherData = async (searchParams) =>
       lon,
       exclude: "current,minutely,hourly",
       units: searchParams.units,
-    }).then(formatForecastWeather)
+    }).then(formatForecastWeather).map
 
     return { ...formattedCurrentWeather, ...formattedForecastWeather };
 }
