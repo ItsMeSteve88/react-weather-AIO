@@ -23,6 +23,7 @@ const formatCurrentWeather = (data) => {
       sys: { country, sunrise, sunset },
       weather,
       wind: { speed },
+      alerts,
     } = data;
   
     const { main: details, icon, description } = weather[0];
@@ -44,13 +45,14 @@ const formatCurrentWeather = (data) => {
         sunset,
         details,
         icon,
-        description,
+      description,
+        alerts,
     };
   };
 
   const formatForecastWeather = (data) => {
     let { timezone, daily, hourly } = data;
-    daily = daily.slice(1, 6).map((d) => {
+    daily = daily.slice(0, 2).map((d) => {
       return {
         title: formatToLocalTime(d.dt, timezone, "ccc"),
         temp: d.temp.day,
@@ -66,9 +68,8 @@ const formatCurrentWeather = (data) => {
       };
     });
 
-    
 
-    return { timezone, daily, hourly };
+    return { timezone, daily, hourly  };
   };
 
  

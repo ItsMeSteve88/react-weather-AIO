@@ -41,7 +41,7 @@ const Card = ({ weather: {
           />
         </motion.p>
         <motion.h2 layout className="text-4xl relative bottom-6">
-          {temp.toFixed()}&deg;C
+          {temp.toFixed()}&deg;
         </motion.h2>
       </div>
       {isOpen && (

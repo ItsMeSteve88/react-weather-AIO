@@ -31,7 +31,7 @@ function App()
 
   return (
     <div>
-      <Navbar setQuery units setUnits />
+      <Navbar setQuery={setQuery} units={units} setUnits={setUnits} />
       {weather && (
         <div>
           <div className="w-[1300px] p-7 rounded-lg shadow-md border-2">
