@@ -7,12 +7,13 @@ import Card from "./components/Card";
 import CurrentLocation from "./components/CurrentLocation";
 import GlobalMap from "./components/GlobalMap";
 import Forecast from "./components/Forecast";
+import Alerts from "./components/Alerts";
 import getFormattedWeatherData from "./services/weatherService";
 
 function App()
 {
   
-  const [query, setQuery] = useState({ q: "Riga" });
+  const [query, setQuery] = useState({ q: "riga" });
   const [units, setUnits] = useState('metric');
   const [weather, setWeather] = useState(null);
   
@@ -30,13 +31,16 @@ function App()
 
   return (
     <div>
-      <Navbar />
+      <Navbar setQuery units setUnits />
       {weather && (
         <div>
           <div className="w-[1300px] p-7 rounded-lg shadow-md border-2">
-            <TodayDisplay weather={weather}/>
+            <TodayDisplay weather={weather} />
             <div className="w-[1250px] flex justify-between">
-              <Card weather={weather}/>
+             
+            
+                <Card weather={weather}  />
+              
 
               <div className="border-2 rounded-3xl w-80 mt-4 h-48">
                 <CurrentLocation weather={weather} />
@@ -47,11 +51,11 @@ function App()
             </h1>
             <div className="flex gap-4">
               <div className="w-2/5">
-                <Forecast title="hourly forecast" />
-                <Forecast title="hourly forecast" />
+                <Forecast title="hourly forecast" items={weather.hourly} />
+                <Alerts title="daily alert" items={weather.alerts}/>
               </div>
               <div className=" w-3/5">
-                <GlobalMap />
+                <GlobalMap/>
               </div>
             </div>
           </div>

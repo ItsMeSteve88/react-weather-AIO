@@ -13,7 +13,7 @@ import {
 import { formatToLocalTime, iconUrlFromCode } from "../services/weatherService";
 
 const Card = ({ weather: {
-  sunrise, sunset, details, icon, temp, temp_min, temp_max, feels_like, humidity, pressure, speed, dt, timezone
+  sunrise, sunset, details, description, icon, temp, temp_min, temp_max, feels_like, humidity, pressure, speed, timezone
 }}) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -52,7 +52,7 @@ const Card = ({ weather: {
           className="p-3 items-start justify-between w-[300px]"
         >
           <div className="font-medium">
-            <p>{details}</p>
+            <p className="capitalize">{details}, {description}</p>
           </div>
           <hr className="divider mt-1.5" />
           <div className="flex justify-between">
