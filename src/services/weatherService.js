@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 
 const API_Key = "f13af67768ac1086ae8f072594bcd44e"
-const BASE_URL = "https://api.openweathermap.org/data/2.5/"
+const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 // https://api.openweathermap.org/data/3.0/onecall?lat=48.8534&lon=2.3488&exclude=current,minutely&appid=f13af67768ac1086ae8f072594bcd44e&units=metric
 
@@ -10,9 +10,9 @@ const BASE_URL = "https://api.openweathermap.org/data/2.5/"
 const getWeatherData = (infoType, searchParams) => {
     const url = new URL(BASE_URL + "/" + infoType);
     url.search = new URLSearchParams({ ...searchParams, appid: API_Key });
-  
     return fetch(url).then((res) => res.json());
 };
+
   
 const formatCurrentWeather = (data) => {
     const {
@@ -52,11 +52,21 @@ const formatCurrentWeather = (data) => {
 
   const formatForecastWeather = (data) => {
     let { timezone, daily, hourly } = data;
-    daily = daily.slice(0, 2).map((d) => {
+    daily = daily.slice(0, 6).map((d) => {
       return {
         title: formatToLocalTime(d.dt, timezone, "ccc"),
         temp: d.temp.day,
         icon: d.weather[0].icon,
+        feels_like: d.feels_like.day,
+        humidity: d.humidity,
+        details: d.weather[0].main,
+        description: d.weather[0].description,
+        speed: d.wind_speed,
+        pressure: d.pressure,
+        sunrise: d.sunrise,
+        sunset: d.sunset,
+        temp_min: d.temp.min,
+        temp_max: d.temp.max,
       };
     });
   
@@ -67,6 +77,9 @@ const formatCurrentWeather = (data) => {
         icon: d.weather[0].icon,
       };
     });
+    
+
+    console.log(data)
 
 
     return { timezone, daily, hourly  };

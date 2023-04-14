@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import TodayDisplay from "./components/TodayDisplay";
 import Card from "./components/Card";
-import CurrentLocation from "./components/CurrentLocation";
+//import CurrentLocation from "./components/CurrentLocation";
 import GlobalMap from "./components/GlobalMap";
 import Forecast from "./components/Forecast";
 import Alerts from "./components/Alerts";
 import getFormattedWeatherData from "./services/weatherService";
+//import Daily from "./components/Daily";
 
 function App()
 {
@@ -36,15 +37,13 @@ function App()
         <div>
           <div className="w-[1300px] p-7 rounded-lg shadow-md border-2">
             <TodayDisplay weather={weather} />
-            <div className="w-[1250px] flex justify-between">
-             
-            
-                <Card weather={weather}  />
-              
-
-              <div className="border-2 rounded-3xl w-80 mt-4 h-48">
+            <div className="w-[1240px] flex justify-between">
+              {weather?.daily.map((daily, index) => (                
+                <Card key={index} items={weather.daily} daily={daily} weather={weather} />
+              ))}
+              {/* <div className="border-2 rounded-3xl w-80 mt-4 h-48">
                 <CurrentLocation weather={weather} />
-              </div>
+              </div> */}
             </div>
             <h1 className="text-end mt-6 font-semibold text-xl">
               Location Map
