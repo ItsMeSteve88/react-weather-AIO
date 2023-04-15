@@ -51,7 +51,7 @@ function App()
             <div className="flex gap-4">
               <div className="w-2/5">
                 <Forecast title="hourly forecast" items={weather.hourly} />
-                <Alerts title="daily alert" items={weather.alerts}/>
+                <Alerts title="daily alerts" items={weather.alerts}/>
               </div>
               <div className=" w-3/5">
                 <GlobalMap/>
