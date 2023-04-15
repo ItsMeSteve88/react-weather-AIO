@@ -23,7 +23,7 @@ const formatCurrentWeather = (data) => {
       sys: { country, sunrise, sunset },
       weather,
       wind: { speed },
-      alerts,
+      sender_name, event, status
     } = data;
   
     const { main: details, icon, description } = weather[0];
@@ -46,12 +46,14 @@ const formatCurrentWeather = (data) => {
         details,
         icon,
       description,
-        alerts,
+      sender_name,
+      event,
+      status,
     };
   };
 
   const formatForecastWeather = (data) => {
-    let { timezone, daily, hourly } = data;
+    let { timezone, daily, hourly, alerts } = data;
     daily = daily.slice(0, 6).map((d) => {
       return {
         title: formatToLocalTime(d.dt, timezone, "ccc"),
@@ -77,12 +79,20 @@ const formatCurrentWeather = (data) => {
         icon: d.weather[0].icon,
       };
     });
+
+    alerts = alerts?.map((d) => {
+      return {
+        sender_name: d.sender_name,
+        event: d.event,
+        description: d.description,
+      };
+    });
     
 
-    console.log(data)
+    console.log(alerts)
 
 
-    return { timezone, daily, hourly  };
+    return { timezone, daily, hourly, alerts  };
   };
 
  
