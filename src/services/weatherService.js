@@ -88,10 +88,6 @@ const formatCurrentWeather = (data) => {
       };
     });
     
-
-    console.log(alerts)
-
-
     return { timezone, daily, hourly, alerts  };
   };
 
